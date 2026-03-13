@@ -19,12 +19,12 @@ ter o ambiente rodando e o banco modelado antes de escrever qualquer lógica de 
 - .gitignore corretamente configurado
 
 #### Task
-- [ ] Criar repositório no GitHub
-- [ ] Configurar venv e instalar dependências
-- [ ] Instalar e iniciar PostgreSQL
-- [ ] Criar arquivo .env com DATABASE_URL
-- [ ] Criar .gitignore padronizado para Python
-- [ ] Dar primeiro commit com o setup do projeto
+- [X] Criar repositório no GitHub
+- [X] Configurar venv e instalar dependências
+- [X] Instalar e iniciar PostgreSQL
+- [X] Criar arquivo .env com DATABASE_URL
+- [X] Criar .gitignore padronizado para Python
+- [X] Dar primeiro commit com o setup do projeto
 
 ### US-02
 "Como desenvolvedor, quero modelar o banco de dados com as tabelas necessárias para armazenar ativos e histórico de preços."
