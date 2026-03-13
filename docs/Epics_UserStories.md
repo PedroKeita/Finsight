@@ -58,10 +58,10 @@ Ter dados reais de ativos financeiros populando o banco de maneira confiável.
 - Validação de ticker antes de inserir
 #### Task
 - [X] Criar database.py com conexão SQLAlchemy
-- [ ] Criar função insert_asset(ticker, name, category)
-- [ ] Adicionar validação de ticker duplicado
-- [ ] Criar seed.py com 5 ativos iniciais (PETR4, VALE3, BVSP, ITUB4, BBAS3)
-- [ ] Testar inserção e verificar no banco
+- [X] Criar função insert_asset(ticker, name, category)
+- [X] Adicionar validação de ticker duplicado
+- [X] Criar seed.py com 5 ativos iniciais (PETR4, VALE3, BVSP, ITUB4, BBAS3)
+- [X] Testar inserção e verificar no banco
 
 ### US-04
 "Como analista, quero que o sistema colete automaticamente o histórico de preços de um ativo via API external."
