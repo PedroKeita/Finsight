@@ -37,11 +37,11 @@ ter o ambiente rodando e o banco modelado antes de escrever qualquer lógica de 
 - Script SQL versionado no repositório
 
 #### Task
-- [ ] Criar arquivo schema.sql
-- [ ] Escrever DDL da tabela assets
-- [ ] Escrever DDL da tabela prices com FK
-- [ ] Criar indices e constraints
-- [ ] Executar script e validar no banco
+- [X] Criar arquivo schema.sql
+- [X] Escrever DDL da tabela assets
+- [X] Escrever DDL da tabela prices com FK
+- [X] Criar indices e constraints
+- [X] Executar script e validar no banco
 
 # EP-02 - Coleta e Ingestão de Dados
 ## Objetivo
@@ -57,7 +57,7 @@ Ter dados reais de ativos financeiros populando o banco de maneira confiável.
 - Pelo menos 5 ativos cadastrados para teste
 - Validação de ticker antes de inserir
 #### Task
-- [ ] Criar database.py com conexão SQLAlchemy
+- [X] Criar database.py com conexão SQLAlchemy
 - [ ] Criar função insert_asset(ticker, name, category)
 - [ ] Adicionar validação de ticker duplicado
 - [ ] Criar seed.py com 5 ativos iniciais (PETR4, VALE3, BVSP, ITUB4, BBAS3)

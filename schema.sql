@@ -12,10 +12,10 @@ CREATE TABLE IF NOT EXISTS prices (
     close_price NUMERIC(12,4) NOT NULL,
     volume BIGINT, 
     UNIQUE(asset_id, date)
-)
+);
 
 -- Index para buscar dos ativos e pela data
 CREATE INDEX IF NOT EXISTS idx_prices_asset_date
-    ON prices(asset_id, date)
+    ON prices(asset_id, date);
 
 
