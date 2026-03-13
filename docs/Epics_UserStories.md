@@ -72,12 +72,12 @@ Ter dados reais de ativos financeiros populando o banco de maneira confiável.
 - Erros de coleta são logados sem quebrar o processo
 - Histórico mínimo de 1 ano disponível
 #### Task
-- [ ] Criar collector.py com função fetch_prices(ticker, period)
-- [ ] Integrar yfinance e converter para DataFrame pandas
-- [ ] Criar função save_prices() com upsert no PostgreSQL
-- [ ] Adicionar try/except com logging de erros
-- [ ] Testar coleta para todos os ativos do seed
-- [ ] Validar dados no banco via query SQL
+- [X] Criar collector.py com função fetch_prices(ticker, period)
+- [X] Integrar yfinance e converter para DataFrame pandas
+- [X] Criar função save_prices() com upsert no PostgreSQL
+- [X] Adicionar try/except com logging de erros
+- [X] Testar coleta para todos os ativos do seed
+- [X] Validar dados no banco via query SQL
 
 # EP-03 - Cálculo de Indicadores Financeiros
 ## Objetivo:
