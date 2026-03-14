@@ -404,10 +404,10 @@ Garantir confiabilidade, performance e boas práticas de engenharia no projeto.
 - Nenhuma URL hardcoded no código
 
 #### Task
-- [ ] Adicionar FRONTEND_URL e API_PORT no .env
+- [X] Adicionar FRONTEND_URL e API_PORT no .env
 - [X] Atualizar CORS para usar FRONTEND_URL do .env
 - [X] Criar .env.example com valores de exemplo
-- [ ] Atualizar README com as novas variáveis
+- [X] Atualizar README com as novas variáveis
 
 ---
 
@@ -438,9 +438,9 @@ Tornar o projeto visualmente atrativo e fácil de entender para usuários.
 - Linguagem acessível para não desenvolvedores
 
 #### Task
-- [ ] Criar diagrama do pipeline em ASCII art ou Mermaid
-- [ ] Adicionar seção "Como funciona" no README
-- [ ] Revisar README completo para clareza
+- [X] Criar diagrama do pipeline em ASCII art ou Mermaid
+- [X] Adicionar seção "Como funciona" no README
+- [X] Revisar README completo para clareza
 
 ### US-24
 "Como visitante do repositório, quero ver o dashboard em funcionamento sem precisar rodar o projeto."
@@ -451,9 +451,9 @@ Tornar o projeto visualmente atrativo e fácil de entender para usuários.
 - Duração máxima de 15 segundos
 
 #### Task
-- [ ] Gravar o dashboard em uso com ScreenToGif ou similar
-- [ ] Otimizar o GIF para tamanho razoável
-- [ ] Adicionar no README substituindo o screenshot estático
+- [X] Gravar o dashboard em uso com ScreenToGif ou similar
+- [X] Otimizar o GIF para tamanho razoável
+- [X] Adicionar no README substituindo o screenshot estático
 
 ---
 

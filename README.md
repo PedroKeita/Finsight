@@ -1,4 +1,11 @@
 # 📈 FinSight
+![Python](https://img.shields.io/badge/Python-3.14-blue?logo=python&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-0.135-009688?logo=fastapi&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-17-336791?logo=postgresql&logoColor=white)
+![Chart.js](https://img.shields.io/badge/Chart.js-4.x-FF6384?logo=chartdotjs&logoColor=white)
+![pytest](https://img.shields.io/badge/pytest-84%25%20coverage-green?logo=pytest&logoColor=white)
+![Status](https://img.shields.io/badge/status-em%20desenvolvimento-yellow)
+
 O FinSight é um sistema end-to-end de análise de carteiras de investimentos. Ele coleta dados reais de ativos financeiros, armazena em banco de dados relacional, calcula indicadores de performance e os exibe em um dashboard web interativo, cobrindo todo o fluxo de dados que analistas de fundos operam no dia a dia.
 
 ## Problema que resolve
@@ -11,8 +18,32 @@ O FinSight é um sistema end-to-end de análise de carteiras de investimentos. E
 - Indicadores financeiros calculados com SQL + Python sobre dados históricos reais
 - Dashboard web acessível, sem necessidade de ferramentas pagas ou complexas
 
+## Como funciona
+
+O FinSight opera como um pipeline de dados em 5 etapas — da coleta automática até a visualização no browser.
+```mermaid
+flowchart TD
+    A[ Yahoo Finance] -->|yfinance| B[collector.py Coleta e transforma os dados]
+    B -->|pandas + SQLAlchemy| C[(PostgreSQL Histórico de preços)]
+    C -->|SQL queries| D[indicators.py Calcula Retorno, Volatilidade, Drawdown e Sharpe]
+    D -->|FastAPI| E[API REST Expõe os dados via HTTP]
+    E -->|fetch JavaScript| F[Dashboard Gráficos e indicadores no browser]
+
+    G[APScheduler Todo dia às 18h] -->|dispara| B
+
+    style A fill:#1a5276,color:#fff,stroke:#4fc3f7
+    style B fill:#1e2130,color:#fff,stroke:#4fc3f7
+    style C fill:#1e2130,color:#fff,stroke:#4fc3f7
+    style D fill:#1e2130,color:#fff,stroke:#4fc3f7
+    style E fill:#1e2130,color:#fff,stroke:#4fc3f7
+    style F fill:#1a5276,color:#fff,stroke:#4fc3f7
+    style G fill:#1e8449,color:#fff,stroke:#4fc3f7
+```
+
+> **Coleta automática:** o APScheduler dispara a coleta todos os dias às 18h, após o fechamento do mercado brasileiro, mantendo os dados sempre atualizados sem intervenção manual.
+
 ## Preview
-![FinSight Dashboard](docs/finsight_screenshot.png)
+![FinSight Demo](docs/demo.gif)
 ---
 
 ## STACK 
@@ -201,8 +232,8 @@ O FinSight foi planejado seguindo metodologia ágil, com épicas, histórias de 
 | EP-07 — Expansão de Ativos | Mais tickers, logos e identidade visual | ✅ Concluída |
 | EP-08 — Autocomplete | Campo de busca inteligente | ✅ Concluída |
 | EP-09 — Comparação | Gráfico comparativo normalizado | ✅ Concluída |
-| EP-10 — Qualidade Técnica | Testes, cache, agendamento e configuração | 🚧  Em Andamento |
-| EP-11 — Documentação | Badges, diagrama e GIF animado | 🔜 Planejado |
+| EP-10 — Qualidade Técnica | Testes, cache, agendamento e configuração | ✅ Concluída |
+| EP-11 — Documentação | Badges, diagrama e GIF animado | 🚧  Em Andamento |
 | EP-12 — Funcionalidades Financeiras | Correlação, simulador e alertas | 🔜 Planejado |
 | EP-13 — Visual e UX | Tema claro/escuro, pizza e animações | 🔜 Planejado |
 
