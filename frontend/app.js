@@ -20,6 +20,10 @@ async function loadAssets() {
             .map(a => `<option value="${a.ticker}">${a.name} (${a.ticker})</option>`)
             .join("");
         
+
+        select.addEventListener("change", (e) => loadData(e.target.value));
+        loadData(select.value);    
+        
     } catch (err) {
         select.innerHTML = `<option>Erro ao carregar ativos</option>`;
         console.error(err);
