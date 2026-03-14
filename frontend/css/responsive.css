@@ -1,0 +1,8 @@
+@media (max-width: 768px) {
+  .cards { grid-template-columns: repeat(2, 1fr); }
+  header, main { padding: 20px; }
+}
+
+@media (max-width: 480px) {
+  .cards { grid-template-columns: 1fr; }
+}

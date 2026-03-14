@@ -1,0 +1,60 @@
+.correlation-container {
+  background: #1e2130;
+  border: 1px solid #2e3250;
+  border-radius: 12px;
+  padding: 24px;
+  margin-top: 24px;
+  overflow-x: auto;
+}
+
+.correlation-matrix { display: grid; gap: 2px; }
+
+.corr-cell {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: default;
+  transition: transform 0.1s;
+}
+
+.corr-cell:hover {
+  transform: scale(1.15);
+  z-index: 10;
+  position: relative;
+}
+
+.corr-header {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  color: #888;
+  font-weight: bold;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+}
+
+.corr-row {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.corr-label {
+  width: 72px;
+  font-size: 11px;
+  color: #888;
+  text-align: right;
+  padding-right: 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
