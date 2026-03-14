@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from routers import assets, prices, indicators, collect
+from routers import assets, prices, indicators, collect, correlation
 from scheduler import start_scheduler
 from dotenv import load_dotenv
 import logging
@@ -27,6 +27,7 @@ app.include_router(assets.router)
 app.include_router(prices.router)
 app.include_router(indicators.router)
 app.include_router(collect.router)
+app.include_router(correlation.router)
 
 @app.on_event("startup")
 async def startup_event():

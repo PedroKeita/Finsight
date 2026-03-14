@@ -473,10 +473,10 @@ Adicionar análises financeiras mais sofisticadas que demonstrem domínio do dom
 - Endpoint GET /correlation retorna a matriz
 
 #### Task
-- [ ] Criar endpoint GET /correlation no backend
-- [ ] Calcular matriz de correlação com pandas (.corr())
-- [ ] Criar seção de correlação no dashboard
-- [ ] Renderizar matriz com CSS grid e cores condicionais
+- [X] Criar endpoint GET /correlation no backend
+- [X] Calcular matriz de correlação com pandas (.corr())
+- [X] Criar seção de correlação no dashboard
+- [X] Renderizar matriz com CSS grid e cores condicionais
 
 ### US-26
 "Como analista, quero simular uma carteira definindo o percentual de cada ativo para ver o retorno consolidado."

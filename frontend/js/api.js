@@ -19,3 +19,8 @@ async function collectAll(period) {
     const res = await fetch(`${API}/collect/all?period=${period}`, { method: "POST" });
     return res.json();
 }
+
+async function fetchCorrelation(period) {
+    const res = await fetch(`${API}/correlation/?period=${period}`);
+    return res.json();
+}

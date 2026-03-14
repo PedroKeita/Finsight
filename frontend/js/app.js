@@ -42,19 +42,19 @@ async function loadData() {
 
     showLoading(true);
 
-    try {
+     try {
         const tickersToLoad = comparisonTickers.length > 0
             ? [currentTicker, ...comparisonTickers.filter(t => t !== currentTicker)]
             : [currentTicker];
 
         const asset = assetsList.find(a => a.ticker === currentTicker);
 
-        const [indicators, ...allPrices] = await Promise.all([
+        const [indicators, correlation, ...allPrices] = await Promise.all([
             fetchIndicators(currentTicker, currentPeriod),
+            fetchCorrelation(currentPeriod),
             ...tickersToLoad.map(t => fetchPrices(t, currentPeriod))
         ]);
 
-        // Monta o mapa { ticker: prices[] }
         const pricesMap = {};
         tickersToLoad.forEach((ticker, i) => {
             pricesMap[ticker] = allPrices[i];
@@ -62,6 +62,7 @@ async function loadData() {
 
         renderCards(indicators, asset);
         renderChart(pricesMap, comparisonTickers.length > 0);
+        renderCorrelation(correlation);
 
     } catch (err) {
         console.error("Erro ao carregar dados:", err);
