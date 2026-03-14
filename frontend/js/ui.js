@@ -116,6 +116,8 @@ function renderCards(indicators, asset) {
     setCard("val-volatility", indicators.volatility, "%");
     setCard("val-drawdown",   indicators.drawdown,   "%");
     setCard("val-sharpe",     indicators.sharpe,     "");
+
+    setDailyVariation(indicators.daily_variation);
 }
 
 function setCard(id, value, suffix) {
@@ -125,6 +127,22 @@ function setCard(id, value, suffix) {
 
     if (value > 0) el.classList.add("positive");
     if (value < 0) el.classList.add("negative");
+}
+
+function setDailyVariation(value) {
+    const el = document.getElementById("val-daily");
+    if (!el) return;
+
+    const sign = value >= 0 ? "+" : "";
+    el.textContent = `${sign}${value}%`;
+    el.className = "card-value " + (value >= 0 ? "positive" : "negative");
+
+    // Alerta no card
+    const card = document.getElementById("card-daily");
+    card.classList.remove("alert-up", "alert-down");
+
+    if (value >= 3)       card.classList.add("alert-up");
+    else if (value <= -3) card.classList.add("alert-down");
 }
 
 function showLoading(show) {

@@ -103,7 +103,7 @@ select:focus {
 /* ── CARDS ── */
 .cards {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 16px;
   margin-bottom: 32px;
 }
@@ -142,6 +142,22 @@ select:focus {
 
 .card-value.negative {
   color: #ef5350;
+}
+
+.card.alert-up {
+  border-color: #ffd54f;
+  background: rgba(255, 213, 79, 0.08);
+}
+
+.card.alert-down {
+  border-color: #ef5350;
+  background: rgba(239, 83, 80, 0.08);
+}
+
+@media (max-width: 768px) {
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 /* ── REFRESH ── */

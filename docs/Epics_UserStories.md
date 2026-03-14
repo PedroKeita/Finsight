@@ -491,7 +491,7 @@ Adicionar análises financeiras mais sofisticadas que demonstrem domínio do dom
 - [X] Criar endpoint POST /portfolio no backend
 - [X] Calcular retorno ponderado da carteira
 - [X] Criar interface de alocação no frontend
-- [ ] Renderizar gráfico comparativo carteira vs benchmark
+- [X] Renderizar gráfico comparativo carteira vs benchmark
 
 ### US-27
 "Como analista, quero ser alertado visualmente quando um ativo tiver variação significativa no dia."
@@ -503,10 +503,10 @@ Adicionar análises financeiras mais sofisticadas que demonstrem domínio do dom
 - Limiar de alerta configurável
 
 #### Task
-- [ ] Calcular variação diária no indicators.py
-- [ ] Retornar variação diária no endpoint /indicators
-- [ ] Aplicar estilo condicional nos cards baseado na variação
-- [ ] Adicionar CSS para estado de alerta
+- [X] Calcular variação diária no indicators.py
+- [X] Retornar variação diária no endpoint /indicators
+- [X] Aplicar estilo condicional nos cards baseado na variação
+- [X] Adicionar CSS para estado de alerta
 
 ---
 

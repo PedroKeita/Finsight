@@ -100,16 +100,29 @@ def get_indicators(ticker: str, period: str = "1y"):
     """
 
     df = get_prices(ticker, period)
-
     df = calculate_returns(df)
 
     result = {
         "return": round(cumulative_return(df) * 100, 2),
         "volatility": round(volatility(df) * 100, 2),
         "drawdown": round(max_drawdown(df) * 100, 2),
-        "sharpe": round(sharpe_ratio(df), 2)
+        "sharpe": round(sharpe_ratio(df), 2),
+        "daily_variation": daily_variation(df)
     }
 
     return result
+
+def daily_variation(df: pd.DataFrame) -> float:
+    """
+    Calcula a variação do último dia em relação ao dia anterior.
+    """
+
+    if len(df) < 2:
+        return 0.0
+    
+    last = df["close_price"].iloc[-1]
+    prev = df["close_price"].iloc[-2]
+
+    return round(((last - prev) / prev) * 100, 2)
 
 
