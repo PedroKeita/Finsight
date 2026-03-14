@@ -14,3 +14,8 @@ async function fetchPrices(ticker, period) {
     const res = await fetch(`${API}/prices/${ticker}?period=${period}`);
     return res.json();
 }
+
+async function collectAll(period) {
+    const res = await fetch(`${API}/collect/all?period=${period}`, { method: "POST" });
+    return res.json();
+}

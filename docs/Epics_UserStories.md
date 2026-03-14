@@ -200,3 +200,143 @@ Interface limpa e funcional que transforma os dados da API em informação visua
 - [X] Criar botões de período e lógica de troca
 - [X] Ajustar CSS para responsividade básica
 - [X] Testar no browser com dados reais
+
+# EP-06 - Melhorias e Evolução do Sistema
+## Objetivo
+Evoluir o sistema com funcionalidades que aumentam a qualidade técnica e a experiência do usuário.
+
+## User Stories
+
+### US-11
+"Como desenvolvedor, quero separar o código em módulos com responsabilidades únicas para facilitar manutenção e evolução."
+
+#### Critérios de Aceitação
+- Frontend separado em api.js, chart.js, ui.js e app.js
+- Backend separado em routers individuais por domínio
+- main.py apenas orquestra os routers
+- Nenhuma função acessa o DOM e a API no mesmo arquivo
+
+#### Task
+- [X] Criar pasta frontend/js com módulos separados
+- [X] Criar pasta backend/routers com routers por domínio
+- [X] Refatorar main.py para usar include_router
+- [X] Validar que todos os endpoints continuam funcionando
+
+### US-12
+"Como analista, quero atualizar os dados de todos os ativos com um clique para garantir que as informações estejam sempre frescos."
+
+#### Critérios de Aceitação
+- Botão "Atualizar dados" visível no dashboard
+- Botão fica desabilitado durante a atualização
+- Endpoint POST /collect/all atualiza todos os ativos cadastrados
+- Após atualização, dashboard recarrega os dados automaticamente
+- Resultado da coleta retorna status por ativo
+
+#### Task
+- [X] Criar endpoint POST /collect/all no backend
+- [X] Corrigir ordem das rotas para /all não conflitar com /{ticker}
+- [X] Adicionar botão de atualização no index.html
+- [X] Estilizar botão no style.css
+- [X] Implementar setupRefreshButton() no app.js
+- [X] Adicionar collectAll() no api.js
+
+# EP-07 - Expansão de Ativos e Identidade Visual
+## Objetivo
+Ampliar a base de ativos monitorados e enriquecer a interface com identidade visual de cada empresa.
+
+## User Stories
+
+### US-13
+"Como analista, quero ver mais ativos disponíveis no dashboard para ter uma visão mais ampla do mercado."
+
+#### Critérios de Aceitação
+- Pelo menos 20 ativos cadastrados cobrindo ações, índices e FIIs
+- Ativos organizados por categoria
+- Novos ativos coletados e com histórico de 1 ano disponível
+- seed.py atualizado com os novos ativos
+
+#### Task
+- [ ] Adicionar coluna logo_url na tabela assets via migration SQL
+- [ ] Atualizar models.py com o novo campo
+- [ ] Atualizar seed.py com 20+ ativos e suas logo_urls
+- [ ] Executar seed e coletar dados dos novos ativos
+- [ ] Validar no banco que todos têm histórico
+
+### US-14
+"Como usuário, quero ver o ícone de cada empresa no dashboard para identificar os ativos visualmente com mais facilidade."
+
+#### Critérios de Aceitação
+- Logo aparece no dropdown ao lado do nome do ativo
+- Logo aparece no card de indicadores do ativo selecionado
+- Fallback visual quando logo não estiver disponível
+- Logos carregadas via URL salva no banco
+
+#### Task
+- [ ] Atualizar GET /assets para retornar logo_url
+- [ ] Renderizar logo no dropdown em ui.js
+- [ ] Renderizar logo no header dos cards
+- [ ] Adicionar CSS para logo circular e fallback
+
+---
+
+# EP-08 - Busca com Autocomplete
+## Objetivo
+Substituir o dropdown simples por um campo de busca inteligente que escala para muitos ativos.
+
+## User Stories
+
+### US-15
+"Como usuário, quero digitar o nome ou ticker de um ativo para encontrá-lo rapidamente sem precisar rolar uma lista longa."
+
+#### Critérios de Aceitação
+- Campo de busca filtra por ticker e por nome simultaneamente
+- Resultados aparecem em tempo real enquanto o usuário digita
+- Mínimo de 1 caractere para exibir resultados
+- Teclado navegável (setas + Enter para selecionar)
+- Campo limpa ao selecionar um ativo
+
+#### Task
+- [ ] Remover select do index.html
+- [ ] Criar componente de autocomplete em ui.js
+- [ ] Implementar lógica de filtro em app.js
+- [ ] Estilizar dropdown de resultados no style.css
+- [ ] Testar navegação por teclado
+
+---
+
+# EP-09 - Comparação de Ativos
+## Objetivo
+Permitir comparar a performance de múltiplos ativos no mesmo gráfico de forma visual e justa.
+
+## User Stories
+
+### US-16
+"Como analista, quero adicionar múltiplos ativos ao gráfico para comparar suas performances no mesmo período."
+
+#### Critérios de Aceitação
+- Usuário pode adicionar até 5 ativos para comparação
+- Cada ativo tem uma cor diferente no gráfico
+- Botão para remover ativo da comparação
+- Lista de ativos selecionados visível na interface
+
+#### Task
+- [ ] Criar estado de ativos selecionados em app.js
+- [ ] Adicionar botão "Comparar" ao selecionar ativo
+- [ ] Renderizar chips dos ativos selecionados com botão de remover
+- [ ] Atualizar renderChart para suportar múltiplos datasets
+- [ ] Definir paleta de cores para cada ativo
+
+### US-17
+"Como analista, quero que o gráfico comparativo use retorno normalizado para comparar ativos com preços muito diferentes de forma justa."
+
+#### Critérios de Aceitação
+- Eixo Y mostra retorno em % em vez de preço absoluto em R$
+- Base 0% no primeiro dia do período para todos os ativos
+- Tooltip mostra retorno acumulado no ponto selecionado
+- Legenda identifica cada ativo pela cor
+
+#### Task
+- [ ] Implementar normalização dos preços em chart.js
+- [ ] Atualizar eixo Y para exibir %
+- [ ] Atualizar tooltip para mostrar retorno acumulado
+- [ ] Testar com ativos de escalas muito diferentes (ex: PETR4 vs Ibovespa)

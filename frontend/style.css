@@ -144,6 +144,28 @@ select:focus {
   color: #ef5350;
 }
 
+/* ── REFRESH ── */
+#refresh-btn {
+  background: transparent;
+  color: #4fc3f7;
+  border: 1px solid #4fc3f7;
+  border-radius: 8px;
+  padding: 10px 18px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+#refresh-btn:hover {
+  background: #4fc3f7;
+  color: #0f1117;
+}
+
+#refresh-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 /* ── CHART ── */
 .chart-container {
   background: #1e2130;

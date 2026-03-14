@@ -3,6 +3,7 @@ let currentPeriod = "1y";
 document.addEventListener("DOMContentLoaded", () => {
     loadAssets();
     setupPeriodButtons();
+    setupRefreshButton();
 });
 
 async function loadAssets() {
@@ -52,4 +53,26 @@ async function loadData(ticker) {
     } finally {
         showLoading(false);
     }
+}
+
+function setupRefreshButton() {
+    document.getElementById("refresh-btn").addEventListener("click", async () => {
+        const btn = document.getElementById("refresh-btn");
+        btn.disabled = true;
+        btn.textContent = "Atualizando...";
+
+        try {
+            const result = await collectAll(currentPeriod);
+            console.log("Atualização concluída:", result);
+
+            const ticker = document.getElementById("asset-select").value;
+            if (ticker) loadData(ticker);
+
+        } catch (err) {
+            console.error("Erro ao atualizar:", err);
+        } finally {
+            btn.disabled = false;
+            btn.textContent = "Atualizar dados";
+        }
+    });
 }
