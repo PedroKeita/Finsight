@@ -359,9 +359,9 @@ Garantir confiabilidade, performance e boas práticas de engenharia no projeto.
 #### Task
 - [X] Instalar pytest e pytest-cov
 - [X] Criar pasta tests/ com __init__.py
-- [ ] Criar test_indicators.py com testes de retorno, volatilidade, drawdown e sharpe
-- [ ] Criar test_api.py com testes dos endpoints
-- [ ] Rodar pytest e validar cobertura
+- [X] Criar test_indicators.py com testes de retorno, volatilidade, drawdown e sharpe
+- [X] Criar test_api.py com testes dos endpoints
+- [X] Rodar pytest e validar cobertura
 
 ### US-19
 "Como desenvolvedor, quero cache nas respostas da API para reduzir consultas repetidas ao banco de dados."
@@ -373,10 +373,10 @@ Garantir confiabilidade, performance e boas práticas de engenharia no projeto.
 - Cache implementado sem biblioteca externa
 
 #### Task
-- [ ] Implementar cache em memória com dicionário Python
-- [ ] Aplicar cache nos endpoints /indicators e /prices
-- [ ] Invalidar cache no endpoint /collect
-- [ ] Testar diferença de tempo com e sem cache
+- [X] Implementar cache em memória com dicionário Python
+- [X] Aplicar cache nos endpoints /indicators e /prices
+- [X] Invalidar cache no endpoint /collect
+- [X] Testar diferença de tempo com e sem cache
 
 ### US-20
 "Como analista, quero que os dados sejam coletados automaticamente todo dia sem precisar clicar no botão."
@@ -413,7 +413,7 @@ Garantir confiabilidade, performance e boas práticas de engenharia no projeto.
 
 # EP-11 - Documentação e Apresentação
 ## Objetivo
-Tornar o projeto visualmente atrativo e fácil de entender para recrutadores e colaboradores.
+Tornar o projeto visualmente atrativo e fácil de entender para usuários.
 
 ## User Stories
 

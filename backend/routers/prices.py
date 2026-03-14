@@ -1,6 +1,7 @@
 from fastapi import APIRouter, HTTPException, Query
 from sqlalchemy import text
 from database import engine
+from cache import get_cache, set_cache
 import pandas as pd
 
 router = APIRouter(prefix="/prices", tags=["Prices"])
@@ -13,6 +14,13 @@ PERIOD_MAP = {
 
 @router.get("/{ticker}", summary="Retorna histórico de preços de um ativo")
 def get_prices(ticker: str, period: str = Query(default="1y", pattern="^(1y|6m|3m)$")):
+
+    cache_key = f"prices:{ticker}:{period}"
+    cached = get_cache(cache_key)
+
+    if cached:
+        return cached
+
     interval = PERIOD_MAP[period]
 
     query = text(f"""
@@ -30,4 +38,7 @@ def get_prices(ticker: str, period: str = Query(default="1y", pattern="^(1y|6m|3
         raise HTTPException(status_code=404, detail=f"Ativo '{ticker}' não encontrado")
 
     df["date"] = df["date"].astype(str)
-    return df.to_dict(orient="records")
+    result = df.to_dict(orient="records")
+    set_cache(cache_key, result)
+
+    return result
