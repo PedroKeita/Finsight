@@ -93,12 +93,12 @@ Transformar os dados brutos em indicadores que medem risco e performance de cada
 - Função aceita ticker e período como parâmetros
 - Resultado retornado em % com 2 casas decimais
 #### Task
-- [ ] Criar indicators.py
-- [ ] Buscar série de preços do PostgreSQL via SQL
-- [ ] Calcular retornos diários com pandas 
-- [ ] Calcular retorno acumulado 
-- [ ] Calcular volatilidade
-- [ ] Testar com dados reais e validar resultado
+- [X] Criar indicators.py
+- [] Buscar série de preços do PostgreSQL via SQL
+- [X] Calcular retornos diários com pandas 
+- [X] Calcular retorno acumulado 
+- [X] Calcular volatilidade
+- [X] Testar com dados reais e validar resultado
 
 ### US-06
 "Como analista, quero ver o Drawdown máximo e o Sharpe Ratio do ativo para avaliar seu reisco austero."
@@ -109,12 +109,12 @@ Transformar os dados brutos em indicadores que medem risco e performance de cada
 - Drawdown retornado em % negativa
 - Todos os 4 indicadores retornados em uma única chamada
 #### Task
-- [ ] Implementar cálculo de drawdown
-- [ ] Buscar taxa CDI de variável de ambiente
-- [ ] Implementar Sharpe
-- [ ] Criar função get_indicators unificada
-- [ ] Escrever comentários que explique cada fórmula no código para melhor legibildiade
-- [ ] Testar todos os 4 indicadores para 3 ativos diferentes
+- [X] Implementar cálculo de drawdown
+- [X] Buscar taxa CDI de variável de ambiente
+- [X] Implementar Sharpe
+- [X] Criar função get_indicators unificada
+- [X] Escrever comentários que explique cada fórmula no código para melhor legibildiade
+- [X] Testar todos os 4 indicadores para 3 ativos diferentes
 
 
 # EP-04 - API REST
@@ -134,11 +134,11 @@ Expor os dados e indicadores via endpoints HTTP para que o frontend e qualquer c
 - Swagger disponível em /docs
 
 #### Task
-- [ ] Criar main.py com instância FastAPI
-- [ ] Criar endpoint GET /assets
-- [ ] Criar endpoint GET /prices/{ticker} com query param period
-- [ ] Adicionar tratamento de erro 404
-- [ ] Testar no Swagger
+- [X] Criar main.py com instância FastAPI
+- [X] Criar endpoint GET /assets
+- [X] Criar endpoint GET /prices/{ticker} com query param period
+- [X] Adicionar tratamento de erro 404
+- [X] Testar no Swagger
 
 ### US-08
 "Como analista, quero um endpoint que retorne todos os indicadores de um ativo de uma só vez."
@@ -151,11 +151,11 @@ Expor os dados e indicadores via endpoints HTTP para que o frontend e qualquer c
 - Todos os endpoints documentados no Swagger
 
 #### Task
-- [ ] Criar endpoint GET /indicators/{ticker}
-- [ ] integrar com indicators.py
-- [ ] Criar endpoint POST /collect/{ticker}
-- [ ] Adicionar CORS para permitir chamadas no frontend
-- [ ] Testar todos os endpoints via Swagger
+- [X] Criar endpoint GET /indicators/{ticker}
+- [X] integrar com indicators.py
+- [X] Criar endpoint POST /collect/{ticker}
+- [X] Adicionar CORS para permitir chamadas no frontend
+- [X] Testar todos os endpoints via Swagger
 - [ ] Documentar endpoints no README
 # EP-05 - Dashboard Web
 ## Objetivo
