@@ -1,8 +1,108 @@
-function populateSelect(assets) {
-    const select = document.getElementById("asset-select");
-    select.innerHTML = assets
-        .map(a => `<option value="${a.ticker}" data-logo="${a.logo_url || ''}">${a.name} (${a.ticker})</option>`)
-        .join("");
+let onAssetSelect = null;
+
+function initAutocomplete(assets, onSelect) {
+    onAssetSelect = onSelect;
+
+    const selected  = document.getElementById("autocomplete-selected");
+    const input     = document.getElementById("search-input");
+    const list      = document.getElementById("autocomplete-list");
+    let activeIndex = -1;
+
+    // Abre o campo de busca ao clicar
+    selected.addEventListener("click", () => {
+        selected.classList.add("hidden");
+        input.classList.remove("hidden");
+        input.focus();
+        renderList(assets);
+        list.classList.remove("hidden");
+    });
+
+    // Filtra enquanto digita
+    input.addEventListener("input", () => {
+        const query = input.value.toLowerCase();
+        const filtered = assets.filter(a =>
+            a.name.toLowerCase().includes(query) ||
+            a.ticker.toLowerCase().includes(query)
+        );
+        activeIndex = -1;
+        renderList(filtered);
+    });
+
+    // Navegação por teclado
+    input.addEventListener("keydown", (e) => {
+        const items = list.querySelectorAll("li");
+        if (e.key === "ArrowDown") {
+            activeIndex = Math.min(activeIndex + 1, items.length - 1);
+            updateActive(items);
+        } else if (e.key === "ArrowUp") {
+            activeIndex = Math.max(activeIndex - 1, 0);
+            updateActive(items);
+        } else if (e.key === "Enter" && activeIndex >= 0) {
+            items[activeIndex].click();
+        } else if (e.key === "Escape") {
+            closeDropdown();
+        }
+    });
+
+    // Fecha ao clicar fora
+    document.addEventListener("click", (e) => {
+        if (!e.target.closest(".autocomplete-wrapper")) closeDropdown();
+    });
+
+    function renderList(filtered) {
+        if (filtered.length === 0) {
+            list.innerHTML = `<li style="color:#888; cursor:default">Nenhum ativo encontrado</li>`;
+            return;
+        }
+
+        list.innerHTML = filtered.map((a, i) => `
+            <li data-ticker="${a.ticker}" data-index="${i}">
+                <img src="${a.logo_url || ''}" onerror="this.style.display='none'" />
+                <span class="item-name">${a.name}</span>
+                <span class="item-ticker">${a.ticker}</span>
+                <span class="item-category">${a.category}</span>
+            </li>
+        `).join("");
+
+        list.querySelectorAll("li").forEach(li => {
+            li.addEventListener("click", () => {
+                const ticker = li.dataset.ticker;
+                const asset  = assets.find(a => a.ticker === ticker);
+                selectAsset(asset);
+            });
+        });
+    }
+
+    function selectAsset(asset) {
+        const logo = document.getElementById("selected-logo");
+        const name = document.getElementById("selected-name");
+
+        if (asset.logo_url) {
+            logo.src = asset.logo_url;
+            logo.classList.remove("hidden");
+        } else {
+            logo.classList.add("hidden");
+        }
+
+        name.textContent = `${asset.name} (${asset.ticker})`;
+        closeDropdown();
+        if (onAssetSelect) onAssetSelect(asset.ticker);
+    }
+
+    function updateActive(items) {
+        items.forEach((item, i) => item.classList.toggle("active", i === activeIndex));
+        if (items[activeIndex]) items[activeIndex].scrollIntoView({ block: "nearest" });
+    }
+
+    function closeDropdown() {
+        input.value = "";
+        input.classList.add("hidden");
+        selected.classList.remove("hidden");
+        list.classList.add("hidden");
+        activeIndex = -1;
+    }
+
+    if (assets.length > 0) selectAsset(assets[0]);
 }
 
 function renderCards(indicators, asset) {
@@ -12,7 +112,7 @@ function renderCards(indicators, asset) {
 
     document.getElementById("asset-header").innerHTML = `${logo} ${asset?.name || ""}`;
 
-    setCard("val-return",     indicators["return"],     "%");
+    setCard("val-return",     indicators["return"],  "%");
     setCard("val-volatility", indicators.volatility, "%");
     setCard("val-drawdown",   indicators.drawdown,   "%");
     setCard("val-sharpe",     indicators.sharpe,     "");
@@ -32,6 +132,5 @@ function showLoading(show) {
 }
 
 function showError(message) {
-    const select = document.getElementById("asset-select");
-    select.innerHTML = `<option>${message}</option>`;
+    document.getElementById("selected-name").textContent = message;
 }

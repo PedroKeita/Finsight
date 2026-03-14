@@ -1,4 +1,6 @@
 let currentPeriod = "1y";
+let currentTicker = null;
+let assetsList = [];
 
 document.addEventListener("DOMContentLoaded", () => {
     loadAssets();
@@ -8,13 +10,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
 async function loadAssets() {
     try {
-        const assets = await fetchAssets();
-        populateSelect(assets);
-
-        const select = document.getElementById("asset-select");
-        select.addEventListener("change", (e) => loadData(e.target.value));
-        loadData(select.value);
-
+        assetsList = await fetchAssets();
+        initAutocomplete(assetsList, (ticker) => {
+            currentTicker = ticker;
+            loadData(ticker);
+        });
     } catch (err) {
         showError("Erro ao carregar ativos");
         console.error(err);
@@ -28,8 +28,7 @@ function setupPeriodButtons() {
             btn.classList.add("active");
             currentPeriod = btn.dataset.period;
 
-            const ticker = document.getElementById("asset-select").value;
-            if (ticker) loadData(ticker);
+            if (currentTicker) loadData(currentTicker);
         });
     });
 }
@@ -40,8 +39,7 @@ async function loadData(ticker) {
     showLoading(true);
 
     try {
-        const assets = await fetchAssets();
-        const asset = assets.find(a => a.ticker === ticker);
+        const asset = assetsList.find(a => a.ticker === ticker);
 
         const [indicators, prices] = await Promise.all([
             fetchIndicators(ticker, currentPeriod),
@@ -67,10 +65,7 @@ function setupRefreshButton() {
         try {
             const result = await collectAll(currentPeriod);
             console.log("Atualização concluída:", result);
-
-            const ticker = document.getElementById("asset-select").value;
-            if (ticker) loadData(ticker);
-
+            if (currentTicker) loadData(currentTicker);
         } catch (err) {
             console.error("Erro ao atualizar:", err);
         } finally {

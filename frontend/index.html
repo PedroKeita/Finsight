@@ -18,9 +18,21 @@
 
     <!-- Seletor de ativo e período -->
     <section class="controls">
-      <select id="asset-select">
-        <option value="">Carregando ativos...</option>
-      </select>
+      <div class="autocomplete-wrapper">
+        <div class="autocomplete-selected" id="autocomplete-selected">
+            <img id="selected-logo" class="autocomplete-logo hidden" />
+            <span id="selected-name">Selecione um ativo...</span>
+        </div>
+        <input 
+            type="text" 
+             id="search-input" 
+            class="search-input hidden" 
+            placeholder="Buscar por nome ou ticker..."
+            autocomplete="off"
+           />
+         <ul id="autocomplete-list" class="autocomplete-list hidden"></ul>
+      </div>
+      
       <div class="period-buttons">
         <button class="period-btn active" data-period="1y">1A</button>
         <button class="period-btn" data-period="6m">6M</button>

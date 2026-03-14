@@ -189,9 +189,9 @@ O FinSight foi planejado seguindo metodologia ágil, com épicas, histórias de 
 | EP-04 — API REST | Endpoints FastAPI com documentação Swagger | ✅ Concluída |
 | EP-05 — Dashboard | Interface web com gráficos interativos | ✅ Concluída |
 | EP-06 — Melhorias | Refatoração por módulos e atualização automática | ✅ Concluída |
-| EP-07 — Expansão de Ativos | Mais tickers, logos e identidade visual | 🚧 Em Andamento |
-| EP-08 — Autocomplete | Campo de busca inteligente | 🔜 Planejado |
-| EP-09 — Comparação | Gráfico comparativo normalizado | 🔜 Planejad |
+| EP-07 — Expansão de Ativos | Mais tickers, logos e identidade visual | ✅ Concluída |
+| EP-08 — Autocomplete | Campo de busca inteligente | ✅ Concluída |
+| EP-09 — Comparação | Gráfico comparativo normalizado | 🚧 Em Andamento |
 
 
 > O planejamento completo com histórias de usuário e critérios de aceitação está disponível em [`Documentação Épicas e User Stories`](docs/Epics_UserStories.md) 

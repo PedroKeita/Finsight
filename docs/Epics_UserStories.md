@@ -296,11 +296,11 @@ Substituir o dropdown simples por um campo de busca inteligente que escala para 
 - Campo limpa ao selecionar um ativo
 
 #### Task
-- [ ] Remover select do index.html
-- [ ] Criar componente de autocomplete em ui.js
-- [ ] Implementar lógica de filtro em app.js
-- [ ] Estilizar dropdown de resultados no style.css
-- [ ] Testar navegação por teclado
+- [X] Remover select do index.html
+- [X] Criar componente de autocomplete em ui.js
+- [X] Implementar lógica de filtro em app.js
+- [X] Estilizar dropdown de resultados no style.css
+- [X] Testar navegação por teclado
 
 ---
 
