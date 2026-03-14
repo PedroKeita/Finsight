@@ -1,0 +1,170 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #0f1117;
+  color: #e0e0e0;
+  min-height: 100vh;
+}
+
+/* ── HEADER ── */
+header {
+  padding: 32px;
+  border-bottom: 1px solid #1e2130;
+}
+
+header h1 {
+  font-size: 28px;
+  color: #4fc3f7;
+  margin-bottom: 4px;
+}
+
+header p {
+  font-size: 14px;
+  color: #888;
+}
+
+/* ── MAIN ── */
+main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 32px;
+}
+
+/* ── CONTROLS ── */
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+
+select {
+  background: #1e2130;
+  color: #e0e0e0;
+  border: 1px solid #2e3250;
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-size: 15px;
+  cursor: pointer;
+  min-width: 220px;
+}
+
+select:focus {
+  outline: none;
+  border-color: #4fc3f7;
+}
+
+.period-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.period-btn {
+  background: #1e2130;
+  color: #888;
+  border: 1px solid #2e3250;
+  border-radius: 8px;
+  padding: 10px 18px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.period-btn:hover {
+  border-color: #4fc3f7;
+  color: #4fc3f7;
+}
+
+.period-btn.active {
+  background: #4fc3f7;
+  color: #0f1117;
+  border-color: #4fc3f7;
+  font-weight: bold;
+}
+
+/* ── LOADING ── */
+#loading {
+  text-align: center;
+  color: #4fc3f7;
+  padding: 16px;
+  font-size: 14px;
+}
+
+.hidden {
+  display: none;
+}
+
+/* ── CARDS ── */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.card {
+  background: #1e2130;
+  border: 1px solid #2e3250;
+  border-radius: 12px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: border-color 0.2s;
+}
+
+.card:hover {
+  border-color: #4fc3f7;
+}
+
+.card-label {
+  font-size: 13px;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.card-value {
+  font-size: 28px;
+  font-weight: bold;
+  color: #e0e0e0;
+}
+
+.card-value.positive {
+  color: #4caf50;
+}
+
+.card-value.negative {
+  color: #ef5350;
+}
+
+/* ── CHART ── */
+.chart-container {
+  background: #1e2130;
+  border: 1px solid #2e3250;
+  border-radius: 12px;
+  padding: 24px;
+}
+
+/* ── RESPONSIVO ── */
+@media (max-width: 768px) {
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  header, main {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+}

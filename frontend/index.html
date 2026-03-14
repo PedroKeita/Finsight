@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FinSight</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <header>
+    <h1>📈 FinSight</h1>
+    <p>Dashboard de análise de carteiras de investimentos</p>
+  </header>
+
+  <main>
+
+    <!-- Seletor de ativo e período -->
+    <section class="controls">
+      <select id="asset-select">
+        <option value="">Carregando ativos...</option>
+      </select>
+      <div class="period-buttons">
+        <button class="period-btn active" data-period="1y">1A</button>
+        <button class="period-btn" data-period="6m">6M</button>
+        <button class="period-btn" data-period="3m">3M</button>
+      </div>
+    </section>
+
+    <!-- Loading -->
+    <div id="loading" class="hidden">Carregando dados...</div>
+
+    <!-- Cards de indicadores -->
+    <section class="cards" id="cards">
+      <div class="card" id="card-return">
+        <span class="card-label">Retorno Acumulado</span>
+        <span class="card-value" id="val-return">--</span>
+      </div>
+      <div class="card" id="card-volatility">
+        <span class="card-label">Volatilidade</span>
+        <span class="card-value" id="val-volatility">--</span>
+      </div>
+      <div class="card" id="card-drawdown">
+        <span class="card-label">Drawdown Máximo</span>
+        <span class="card-value" id="val-drawdown">--</span>
+      </div>
+      <div class="card" id="card-sharpe">
+        <span class="card-label">Sharpe Ratio</span>
+        <span class="card-value" id="val-sharpe">--</span>
+      </div>
+    </section>
+
+    <!-- Gráfico -->
+    <section class="chart-container">
+      <canvas id="price-chart"></canvas>
+    </section>
+
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
