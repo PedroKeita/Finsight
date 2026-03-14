@@ -206,18 +206,16 @@ function renderPortfolioResult(result) {
     shrEl.textContent = result.sharpe;
     shrEl.className = "card-value " + (result.sharpe >= 1 ? "positive" : "");
 
-    renderPortfolioChart(result.history);
+    renderPortfolioChart(result.history, result.benchmark_history);
 }
 
-function renderPortfolioChart(history) {
+function renderPortfolioChart(history, benchmarkHistory) {
     const labels = history.map(h => h.date);
     const values = history.map(h => h.value);
+    const benchmarkValues = benchmarkHistory.map(h => h.value)
 
     const finalValue = values[values.length - 1];
-     console.log("Final value:", finalValue);
-    console.log("Is positive:", finalValue >= 0);
     const isPositive = finalValue >= 0;
-
     const lineColor = isPositive ? "#81c784" : "#ef5350";
     const bgColor   = isPositive ? "rgba(129, 199, 132, 0.05)" : "rgba(239, 83, 80, 0.05)";
 
@@ -229,16 +227,29 @@ function renderPortfolioChart(history) {
         type: "line",
         data: {
             labels,
-            datasets: [{
-                label: "Retorno da Carteira (%)",
-                data: values,
-                borderColor: lineColor,
-                backgroundColor: bgColor,
-                borderWidth: 2,
-                pointRadius: 0,
-                fill: true,
-                tension: 0.3,
-            }]
+            datasets: [
+                {
+                    label: "Carteira",
+                    data: values,
+                    borderColor: lineColor,
+                    backgroundColor: bgColor,
+                    borderWidth: 2,
+                    pointRadius: 0,
+                    fill: true,
+                    tension: 0.3,
+                },
+                {
+                    label: "Ibovespa",
+                    data: benchmarkValues,
+                    borderColor: "#4fc3f7",
+                    backgroundColor: "transparent",
+                    borderWidth: 2,
+                    pointRadius: 0,
+                    fill: false,
+                    tension: 0.3,
+                    borderDash: [5, 5],
+                }
+            ]
         },
         options: {
             responsive: true,
@@ -246,7 +257,26 @@ function renderPortfolioChart(history) {
                 legend: { labels: { color: "#888" } },
                 tooltip: {
                     callbacks: {
-                        label: ctx => `Retorno: ${ctx.parsed.y.toFixed(2)}%`
+                        label: ctx => `${ctx.dataset.label}: ${ctx.parsed.y.toFixed(2)}%`
+                }
+            },
+                annotation: {
+                    annotations: {
+                        zeroLine: {
+                            type: "line",
+                            yMin: 0,
+                            yMax: 0,
+                            borderColor: "rgba(255, 255, 255, 0.3)",
+                            borderWidth: 2,
+                            borderDash: [6, 3],
+                            label: {
+                                display: true,
+                                content: "0%",
+                                color: "rgba(255,255,255,0.5)",
+                                position: "start",
+                                font: { size: 11 }
+                            }
+                        }
                     }
                 }
             },

@@ -95,9 +95,30 @@ def simulate_portfolio(request: PortfolioRequest):
         for date, val in cumulative.items()
     ]
 
+    benchmark_query = text(f"""
+            SELECT p.date, p.close_price
+            FROM prices p
+            JOIN assets a ON a.id = p.asset_id
+            WHERE a.ticker = '^BVSP'
+            AND p.date >= CURRENT_DATE - INTERVAL '{interval}'
+            ORDER BY p.date
+        """)
+
+    benchmark_df = pd.read_sql(benchmark_query, engine)
+    benchmark_df = benchmark_df[benchmark_df["date"].isin(pivot.index)]
+
+    benchmark_returns = benchmark_df.set_index("date")["close_price"].pct_change().dropna()
+    benchmark_cumulative = (1 + benchmark_returns).cumprod()
+
+    benchmark_history = [
+        {"date": str(date), "value": round((val - 1) * 100, 2)}
+        for date, val in benchmark_cumulative.items()
+    ]
+
     return {
-        "return":     portfolio_return,
-        "volatility": portfolio_volatility,
-        "sharpe":     portfolio_sharpe,
-        "history":    history
+        "return":            portfolio_return,
+        "volatility":        portfolio_volatility,
+        "sharpe":            portfolio_sharpe,
+        "history":           history,
+        "benchmark_history": benchmark_history
     }
