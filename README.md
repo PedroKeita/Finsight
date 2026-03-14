@@ -235,7 +235,6 @@ O FinSight foi planejado seguindo metodologia ágil, com épicas, histórias de 
 | EP-10 — Qualidade Técnica | Testes, cache, agendamento e configuração | ✅ Concluída |
 | EP-11 — Documentação | Badges, diagrama e GIF animado | ✅ Concluída |
 | EP-12 — Funcionalidades Financeiras | Correlação, simulador e alertas | ✅ Concluída |
-| EP-13 — Visual e UX | Tema claro/escuro, pizza e animações | 🚧  Em Andamento |
 
 > O planejamento completo com histórias de usuário e critérios de aceitação está disponível em [`Documentação Épicas e User Stories`](docs/Epics_UserStories.md) 
 
