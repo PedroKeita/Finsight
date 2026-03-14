@@ -1,0 +1,16 @@
+const API = "http://127.0.0.1:8000";
+
+async function fetchAssets() {
+    const res = await fetch(`${API}/assets`);
+    return res.json();
+}
+
+async function fetchIndicators(ticker, period) {
+    const res = await fetch(`${API}/indicators/${ticker}?period=${period}`);
+    return res.json();
+}
+
+async function fetchPrices(ticker, period) {
+    const res = await fetch(`${API}/prices/${ticker}?period=${period}`);
+    return res.json();
+}
