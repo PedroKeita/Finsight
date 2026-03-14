@@ -320,11 +320,11 @@ Permitir comparar a performance de múltiplos ativos no mesmo gráfico de forma 
 - Lista de ativos selecionados visível na interface
 
 #### Task
-- [ ] Criar estado de ativos selecionados em app.js
-- [ ] Adicionar botão "Comparar" ao selecionar ativo
-- [ ] Renderizar chips dos ativos selecionados com botão de remover
-- [ ] Atualizar renderChart para suportar múltiplos datasets
-- [ ] Definir paleta de cores para cada ativo
+- [X] Criar estado de ativos selecionados em app.js
+- [X] Adicionar botão "Comparar" ao selecionar ativo
+- [X] Renderizar chips dos ativos selecionados com botão de remover
+- [X] Atualizar renderChart para suportar múltiplos datasets
+- [X] Definir paleta de cores para cada ativo
 
 ### US-17
 "Como analista, quero que o gráfico comparativo use retorno normalizado para comparar ativos com preços muito diferentes de forma justa."
@@ -336,10 +336,10 @@ Permitir comparar a performance de múltiplos ativos no mesmo gráfico de forma 
 - Legenda identifica cada ativo pela cor
 
 #### Task
-- [ ] Implementar normalização dos preços em chart.js
-- [ ] Atualizar eixo Y para exibir %
-- [ ] Atualizar tooltip para mostrar retorno acumulado
-- [ ] Testar com ativos de escalas muito diferentes (ex: PETR4 vs Ibovespa)
+- [X] Implementar normalização dos preços em chart.js
+- [X] Atualizar eixo Y para exibir %
+- [X] Atualizar tooltip para mostrar retorno acumulado
+- [X] Testar com ativos de escalas muito diferentes (ex: PETR4 vs Ibovespa)
 
 # EP-10 - Qualidade Técnica
 ## Objetivo
@@ -357,8 +357,8 @@ Garantir confiabilidade, performance e boas práticas de engenharia no projeto.
 - Cobertura mínima de 80% do backend
 
 #### Task
-- [ ] Instalar pytest e pytest-cov
-- [ ] Criar pasta tests/ com __init__.py
+- [X] Instalar pytest e pytest-cov
+- [X] Criar pasta tests/ com __init__.py
 - [ ] Criar test_indicators.py com testes de retorno, volatilidade, drawdown e sharpe
 - [ ] Criar test_api.py com testes dos endpoints
 - [ ] Rodar pytest e validar cobertura
