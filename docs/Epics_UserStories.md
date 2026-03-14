@@ -340,3 +340,222 @@ Permitir comparar a performance de múltiplos ativos no mesmo gráfico de forma 
 - [ ] Atualizar eixo Y para exibir %
 - [ ] Atualizar tooltip para mostrar retorno acumulado
 - [ ] Testar com ativos de escalas muito diferentes (ex: PETR4 vs Ibovespa)
+
+# EP-10 - Qualidade Técnica
+## Objetivo
+Garantir confiabilidade, performance e boas práticas de engenharia no projeto.
+
+## User Stories
+
+### US-18
+"Como desenvolvedor, quero testes automatizados no backend para garantir que os cálculos financeiros estão corretos."
+
+#### Critérios de Aceitação
+- Testes cobrem todas as funções do indicators.py
+- Testes cobrem os endpoints principais da API
+- Todos os testes passam com pytest
+- Cobertura mínima de 80% do backend
+
+#### Task
+- [ ] Instalar pytest e pytest-cov
+- [ ] Criar pasta tests/ com __init__.py
+- [ ] Criar test_indicators.py com testes de retorno, volatilidade, drawdown e sharpe
+- [ ] Criar test_api.py com testes dos endpoints
+- [ ] Rodar pytest e validar cobertura
+
+### US-19
+"Como desenvolvedor, quero cache nas respostas da API para reduzir consultas repetidas ao banco de dados."
+
+#### Critérios de Aceitação
+- Respostas de /indicators e /prices são cacheadas por 5 minutos
+- Cache é invalidado ao rodar /collect
+- Tempo de resposta reduz significativamente na segunda chamada
+- Cache implementado sem biblioteca externa
+
+#### Task
+- [ ] Implementar cache em memória com dicionário Python
+- [ ] Aplicar cache nos endpoints /indicators e /prices
+- [ ] Invalidar cache no endpoint /collect
+- [ ] Testar diferença de tempo com e sem cache
+
+### US-20
+"Como analista, quero que os dados sejam coletados automaticamente todo dia sem precisar clicar no botão."
+
+#### Critérios de Aceitação
+- Coleta agendada para rodar todo dia às 18h (após fechamento do mercado)
+- Agendamento configurável via variável de ambiente
+- Logs indicam quando a coleta automática foi executada
+- Sistema continua funcionando normalmente durante a coleta
+
+#### Task
+- [ ] Instalar APScheduler
+- [ ] Criar scheduler.py com job de coleta diária
+- [ ] Configurar horário via variável de ambiente
+- [ ] Integrar scheduler com o startup do FastAPI
+- [ ] Testar agendamento com intervalo curto
+
+### US-21
+"Como desenvolvedor, quero que URLs e configurações sensíveis estejam em variáveis de ambiente para facilitar o deploy."
+
+#### Critérios de Aceitação
+- URL do frontend configurável via .env
+- Porta da API configurável via .env
+- .env.example com todas as variáveis documentadas
+- Nenhuma URL hardcoded no código
+
+#### Task
+- [ ] Adicionar FRONTEND_URL e API_PORT no .env
+- [ ] Atualizar CORS para usar FRONTEND_URL do .env
+- [ ] Criar .env.example com valores de exemplo
+- [ ] Atualizar README com as novas variáveis
+
+---
+
+# EP-11 - Documentação e Apresentação
+## Objetivo
+Tornar o projeto visualmente atrativo e fácil de entender para recrutadores e colaboradores.
+
+## User Stories
+
+### US-22
+"Como visitante do repositório, quero ver badges no README para entender rapidamente as tecnologias usadas."
+
+#### Critérios de Aceitação
+- Badges de Python, FastAPI, PostgreSQL, Chart.js visíveis no topo
+- Badge de status do projeto
+- Badges clicáveis apontando para documentação oficial
+
+#### Task
+- [ ] Adicionar badges via shields.io no README
+- [ ] Organizar badges em uma linha no topo do README
+
+### US-23
+"Como visitante do repositório, quero entender o fluxo do sistema sem precisar ler o código."
+
+#### Critérios de Aceitação
+- Seção "Como funciona" com diagrama do pipeline
+- Diagrama mostra fluxo: Yahoo Finance → Python → PostgreSQL → API → Dashboard
+- Linguagem acessível para não desenvolvedores
+
+#### Task
+- [ ] Criar diagrama do pipeline em ASCII art ou Mermaid
+- [ ] Adicionar seção "Como funciona" no README
+- [ ] Revisar README completo para clareza
+
+### US-24
+"Como visitante do repositório, quero ver o dashboard em funcionamento sem precisar rodar o projeto."
+
+#### Critérios de Aceitação
+- GIF animado mostrando seleção de ativo, indicadores e comparação
+- GIF no README logo abaixo do título
+- Duração máxima de 15 segundos
+
+#### Task
+- [ ] Gravar o dashboard em uso com ScreenToGif ou similar
+- [ ] Otimizar o GIF para tamanho razoável
+- [ ] Adicionar no README substituindo o screenshot estático
+
+---
+
+# EP-12 - Funcionalidades Financeiras Avançadas
+## Objetivo
+Adicionar análises financeiras mais sofisticadas que demonstrem domínio do domínio de investimentos.
+
+## User Stories
+
+### US-25
+"Como analista, quero ver uma tabela de correlação entre os ativos para entender como eles se movem juntos."
+
+#### Critérios de Aceitação
+- Matriz de correlação exibe todos os ativos cadastrados
+- Células coloridas: verde para correlação baixa, vermelho para alta
+- Valores entre -1 e 1 com 2 casas decimais
+- Endpoint GET /correlation retorna a matriz
+
+#### Task
+- [ ] Criar endpoint GET /correlation no backend
+- [ ] Calcular matriz de correlação com pandas (.corr())
+- [ ] Criar seção de correlação no dashboard
+- [ ] Renderizar matriz com CSS grid e cores condicionais
+
+### US-26
+"Como analista, quero simular uma carteira definindo o percentual de cada ativo para ver o retorno consolidado."
+
+#### Critérios de Aceitação
+- Usuário define % para cada ativo (soma deve ser 100%)
+- Sistema calcula retorno, volatilidade e sharpe da carteira
+- Gráfico mostra evolução da carteira vs Ibovespa
+- Endpoint POST /portfolio recebe alocações e retorna indicadores
+
+#### Task
+- [ ] Criar endpoint POST /portfolio no backend
+- [ ] Calcular retorno ponderado da carteira
+- [ ] Criar interface de alocação no frontend
+- [ ] Renderizar gráfico comparativo carteira vs benchmark
+
+### US-27
+"Como analista, quero ser alertado visualmente quando um ativo tiver variação significativa no dia."
+
+#### Critérios de Aceitação
+- Cards destacados em amarelo quando variação diária > 3%
+- Cards destacados em vermelho quando variação diária < -3%
+- Variação diária exibida em cada card
+- Limiar de alerta configurável
+
+#### Task
+- [ ] Calcular variação diária no indicators.py
+- [ ] Retornar variação diária no endpoint /indicators
+- [ ] Aplicar estilo condicional nos cards baseado na variação
+- [ ] Adicionar CSS para estado de alerta
+
+---
+
+# EP-13 - Visual e UX
+## Objetivo
+Polir a interface com recursos visuais que melhoram a experiência de uso.
+
+## User Stories
+
+### US-28
+"Como usuário, quero alternar entre tema claro e escuro para usar o dashboard em diferentes ambientes."
+
+#### Critérios de Aceitação
+- Toggle de tema visível no header
+- Tema persiste ao recarregar a página (localStorage)
+- Transição suave entre temas
+- Todos os componentes adaptados para os dois temas
+
+#### Task
+- [ ] Definir variáveis CSS para cores de cada tema
+- [ ] Criar toggle no header
+- [ ] Implementar troca de tema via classe no body
+- [ ] Salvar preferência no localStorage
+- [ ] Testar todos os componentes nos dois temas
+
+### US-29
+"Como usuário, quero ver um gráfico de pizza com a distribuição dos ativos por categoria."
+
+#### Critérios de Aceitação
+- Gráfico de pizza mostra % de ações, FIIs e índices
+- Atualiza ao adicionar ou remover ativos da comparação
+- Tooltip mostra quantidade e % de cada categoria
+
+#### Task
+- [ ] Adicionar canvas para gráfico de pizza
+- [ ] Implementar renderPieChart em chart.js
+- [ ] Calcular distribuição por categoria em app.js
+- [ ] Estilizar container do gráfico
+
+### US-30
+"Como usuário, quero ver animações nos cards ao carregar para ter uma experiência mais fluida."
+
+#### Critérios de Aceitação
+- Cards aparecem com fade-in ao carregar dados
+- Valores nos cards animam de 0 até o valor final
+- Animação dura no máximo 1 segundo
+- Animação não bloqueia interação
+
+#### Task
+- [ ] Criar animação CSS de fade-in para os cards
+- [ ] Implementar contador animado em ui.js
+- [ ] Testar animações em diferentes velocidades de conexão

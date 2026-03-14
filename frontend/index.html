@@ -23,6 +23,7 @@
             <img id="selected-logo" class="autocomplete-logo hidden" />
             <span id="selected-name">Selecione um ativo...</span>
         </div>
+        
         <input 
             type="text" 
              id="search-input" 
@@ -32,13 +33,21 @@
            />
          <ul id="autocomplete-list" class="autocomplete-list hidden"></ul>
       </div>
-      
+
+      <button id="compare-btn">+ Comparar</button>
+
       <div class="period-buttons">
         <button class="period-btn active" data-period="1y">1A</button>
         <button class="period-btn" data-period="6m">6M</button>
         <button class="period-btn" data-period="3m">3M</button>
       </div>
       <button id="refresh-btn">Atualizar dados</button>
+    </section>
+
+    <section class="comparison-bar" id="comparison-bar">
+        <span class="comparison-label">Comparando:</span>
+        <div id="comparison-chips"></div>
+        <button id="clear-comparison">Limpar</button>
     </section>
 
     <!-- Loading -->

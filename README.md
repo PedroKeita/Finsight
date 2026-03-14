@@ -191,8 +191,11 @@ O FinSight foi planejado seguindo metodologia ágil, com épicas, histórias de 
 | EP-06 — Melhorias | Refatoração por módulos e atualização automática | ✅ Concluída |
 | EP-07 — Expansão de Ativos | Mais tickers, logos e identidade visual | ✅ Concluída |
 | EP-08 — Autocomplete | Campo de busca inteligente | ✅ Concluída |
-| EP-09 — Comparação | Gráfico comparativo normalizado | 🚧 Em Andamento |
-
+| EP-09 — Comparação | Gráfico comparativo normalizado | ✅ Concluída |
+| EP-10 — Qualidade Técnica | Testes, cache, agendamento e configuração | 🚧  Em Andamento |
+| EP-11 — Documentação | Badges, diagrama e GIF animado | 🔜 Planejado |
+| EP-12 — Funcionalidades Financeiras | Correlação, simulador e alertas | 🔜 Planejado |
+| EP-13 — Visual e UX | Tema claro/escuro, pizza e animações | 🔜 Planejado |
 
 > O planejamento completo com histórias de usuário e critérios de aceitação está disponível em [`Documentação Épicas e User Stories`](docs/Epics_UserStories.md) 
 
