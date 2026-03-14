@@ -488,9 +488,9 @@ Adicionar análises financeiras mais sofisticadas que demonstrem domínio do dom
 - Endpoint POST /portfolio recebe alocações e retorna indicadores
 
 #### Task
-- [ ] Criar endpoint POST /portfolio no backend
-- [ ] Calcular retorno ponderado da carteira
-- [ ] Criar interface de alocação no frontend
+- [X] Criar endpoint POST /portfolio no backend
+- [X] Calcular retorno ponderado da carteira
+- [X] Criar interface de alocação no frontend
 - [ ] Renderizar gráfico comparativo carteira vs benchmark
 
 ### US-27

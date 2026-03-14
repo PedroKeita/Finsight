@@ -24,3 +24,12 @@ async function fetchCorrelation(period) {
     const res = await fetch(`${API}/correlation/?period=${period}`);
     return res.json();
 }
+
+async function simulatePortfolio(allocations, period) {
+    const res = await fetch(`${API}/portfolio/`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ allocations, period })
+    });
+    return res.json();
+}

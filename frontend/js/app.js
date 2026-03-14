@@ -19,6 +19,7 @@ async function loadAssets() {
             currentTicker = ticker;
             loadData(ticker);
         });
+        initPortfolio(assetsList);
     } catch (err) {
         showError("Erro ao carregar ativos");
         console.error(err);

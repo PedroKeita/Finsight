@@ -80,6 +80,7 @@
       <canvas id="price-chart"></canvas>
     </section>
 
+    <!-- Matriz de correlation -->
     <section class="correlation-container">
         <div class="section-header">
             <h2>Matriz de Correlação</h2>
@@ -88,6 +89,73 @@
             <div id="correlation-matrix"></div>
     </section>
 
+   
+    <!-- Simulador de Carteira -->
+<section class="portfolio-container">
+  <div class="section-header">
+    <h2>Simulador de Carteira</h2>
+    <span class="section-subtitle">Defina o peso de cada ativo e veja o retorno consolidado</span>
+  </div>
+
+  <div class="period-buttons" style="margin-bottom: 20px;">
+    <button class="portfolio-period-btn active" data-period="1y">1A</button>
+    <button class="portfolio-period-btn" data-period="6m">6M</button>
+    <button class="portfolio-period-btn" data-period="3m">3M</button>
+  </div>
+
+  <div class="portfolio-builder">
+    <!-- Adicionar ativo -->
+    <div class="portfolio-add">
+      <div class="autocomplete-wrapper" id="portfolio-autocomplete-wrapper">
+        <div class="autocomplete-selected" id="portfolio-selected">
+          <img id="portfolio-logo" class="autocomplete-logo hidden" />
+          <span id="portfolio-name">Selecione um ativo...</span>
+        </div>
+        <input
+          type="text"
+          id="portfolio-search"
+          class="search-input hidden"
+          placeholder="Buscar ativo..."
+          autocomplete="off"
+        />
+        <ul id="portfolio-list" class="autocomplete-list hidden"></ul>
+      </div>
+      <input type="number" id="portfolio-weight" class="weight-input" placeholder="Peso %" min="1" max="100" />
+      <button id="portfolio-add-btn">+ Adicionar</button>
+    </div>
+
+    <!-- Lista de ativos da carteira -->
+    <div id="portfolio-items"></div>
+
+    <!-- Total e botão simular -->
+    <div class="portfolio-footer">
+      <span id="portfolio-total" class="portfolio-total">Total: 0%</span>
+      <button id="portfolio-simulate-btn" disabled>Simular Carteira</button>
+    </div>
+  </div>
+
+  <!-- Resultado -->
+  <div id="portfolio-result" class="hidden">
+    <div class="portfolio-cards">
+      <div class="card">
+        <span class="card-label">Retorno Acumulado</span>
+        <span class="card-value" id="port-return">--</span>
+      </div>
+      <div class="card">
+        <span class="card-label">Volatilidade</span>
+        <span class="card-value" id="port-volatility">--</span>
+      </div>
+      <div class="card">
+        <span class="card-label">Sharpe Ratio</span>
+        <span class="card-value" id="port-sharpe">--</span>
+      </div>
+    </div>
+    <div class="chart-container" style="margin-top: 16px;">
+      <canvas id="portfolio-chart"></canvas>
+    </div>
+  </div>
+</section>
+
   </main>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -95,6 +163,7 @@
   <script src="js/ui.js"></script>
   <script src="js/chart.js"></script>
   <script src="js/correlation.js"></script>
+  <script src="js/portfolio.js"></script>
   <script src="js/app.js"></script>
   
 </body>
