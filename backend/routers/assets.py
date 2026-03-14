@@ -10,7 +10,12 @@ def list_assets():
     try:
         assets = db.query(Asset).all()
         return [
-            {"id": a.id, "ticker": a.ticker, "name": a.name, "category": a.category}
+            {"id": a.id, 
+            "ticker": a.ticker, 
+            "name": a.name, 
+            "category": a.category,
+            "logo_url": a.logo_url
+            }
             for a in assets
         ]
     finally:

@@ -256,11 +256,11 @@ Ampliar a base de ativos monitorados e enriquecer a interface com identidade vis
 - seed.py atualizado com os novos ativos
 
 #### Task
-- [ ] Adicionar coluna logo_url na tabela assets via migration SQL
-- [ ] Atualizar models.py com o novo campo
-- [ ] Atualizar seed.py com 20+ ativos e suas logo_urls
-- [ ] Executar seed e coletar dados dos novos ativos
-- [ ] Validar no banco que todos têm histórico
+- [X] Adicionar coluna logo_url na tabela assets via migration SQL
+- [X] Atualizar models.py com o novo campo
+- [X] Atualizar seed.py com 20+ ativos e suas logo_urls
+- [X] Executar seed e coletar dados dos novos ativos
+- [X] Validar no banco que todos têm histórico
 
 ### US-14
 "Como usuário, quero ver o ícone de cada empresa no dashboard para identificar os ativos visualmente com mais facilidade."
@@ -272,10 +272,10 @@ Ampliar a base de ativos monitorados e enriquecer a interface com identidade vis
 - Logos carregadas via URL salva no banco
 
 #### Task
-- [ ] Atualizar GET /assets para retornar logo_url
-- [ ] Renderizar logo no dropdown em ui.js
-- [ ] Renderizar logo no header dos cards
-- [ ] Adicionar CSS para logo circular e fallback
+- [X] Atualizar GET /assets para retornar logo_url
+- [X] Renderizar logo no dropdown em ui.js
+- [X] Renderizar logo no header dos cards
+- [X] Adicionar CSS para logo circular e fallback
 
 ---
 

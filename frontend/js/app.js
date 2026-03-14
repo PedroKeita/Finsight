@@ -40,12 +40,15 @@ async function loadData(ticker) {
     showLoading(true);
 
     try {
+        const assets = await fetchAssets();
+        const asset = assets.find(a => a.ticker === ticker);
+
         const [indicators, prices] = await Promise.all([
             fetchIndicators(ticker, currentPeriod),
             fetchPrices(ticker, currentPeriod),
         ]);
 
-        renderCards(indicators);
+        renderCards(indicators, asset);
         renderChart(prices, ticker);
 
     } catch (err) {

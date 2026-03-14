@@ -166,6 +166,26 @@ select:focus {
   cursor: not-allowed;
 }
 
+/* ── ASSET ── */
+.asset-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #e0e0e0;
+}
+
+.asset-logo {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #1e2130;
+    object-fit: contain;
+}
+
+
 /* ── CHART ── */
 .chart-container {
   background: #1e2130;
