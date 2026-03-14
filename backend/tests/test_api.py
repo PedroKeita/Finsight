@@ -63,7 +63,7 @@ def test_post_collect_valido():
 
         mock_save.return_value = None
         response = client.post("/collect/PETR4.SA?period=1y")
-        
+
         assert response.status_code == 200
         assert response.json()["status"] == "ok"
 
@@ -77,3 +77,49 @@ def test_post_collect_all():
         assert response.status_code == 200
         assert "updated" in response.json()
         assert "results" in response.json()
+
+def test_post_portfolio_valido():
+    response = client.post("/portfolio/", json={
+        "allocations": [
+            {"ticker": "PETR4.SA", "weight": 0.50},
+            {"ticker": "VALE3.SA", "weight": 0.50}
+        ],
+        "period": "1y"
+    })
+    assert response.status_code == 200
+    data = response.json()
+    assert "return" in data
+    assert "volatility" in data
+    assert "sharpe" in data
+    assert "history" in data
+    assert "benchmark_history" in data
+
+def test_post_portfolio_pesos_invalidos():
+    response = client.post("/portfolio/", json={
+        "allocations": [
+            {"ticker": "PETR4.SA", "weight": 0.50},
+            {"ticker": "VALE3.SA", "weight": 0.30}
+        ],
+        "period": "1y"
+    })
+    assert response.status_code == 400
+
+def test_post_portfolio_periodo_invalido():
+    response = client.post("/portfolio/", json={
+        "allocations": [
+            {"ticker": "PETR4.SA", "weight": 1.0}
+        ],
+        "period": "10y"
+    })
+    assert response.status_code == 200
+
+def test_get_correlation():
+    response = client.get("/correlation/?period=1y")
+    assert response.status_code == 200
+    data = response.json()
+    assert "tickers" in data
+    assert "matrix" in data
+
+def test_get_correlation_periodo_invalido():
+    response = client.get("/correlation/?period=10y")
+    assert response.status_code == 422

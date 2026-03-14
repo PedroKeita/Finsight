@@ -1,22 +1,50 @@
 # 📈 FinSight
+
 ![Python](https://img.shields.io/badge/Python-3.14-blue?logo=python&logoColor=white)
 ![FastAPI](https://img.shields.io/badge/FastAPI-0.135-009688?logo=fastapi&logoColor=white)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-17-336791?logo=postgresql&logoColor=white)
 ![Chart.js](https://img.shields.io/badge/Chart.js-4.x-FF6384?logo=chartdotjs&logoColor=white)
-![pytest](https://img.shields.io/badge/pytest-84%25%20coverage-green?logo=pytest&logoColor=white)
-![Status](https://img.shields.io/badge/status-em%20desenvolvimento-yellow)
+![pytest](https://img.shields.io/badge/pytest-86%25%20coverage-green?logo=pytest&logoColor=white)
+![Status](https://img.shields.io/badge/status-ativo-brightgreen)
 
-O FinSight é um sistema end-to-end de análise de carteiras de investimentos. Ele coleta dados reais de ativos financeiros, armazena em banco de dados relacional, calcula indicadores de performance e os exibe em um dashboard web interativo, cobrindo todo o fluxo de dados que analistas de fundos operam no dia a dia.
+O FinSight é um sistema end-to-end de análise de carteiras de investimentos. Ele coleta dados reais de ativos financeiros, armazena em banco de dados relacional, calcula indicadores de performance e os exibe em um dashboard web interativo — cobrindo todo o fluxo de dados que analistas de fundos operam no dia a dia.
+
+## Preview
+![FinSight Demo](docs/demo2.gif)
+
+---
 
 ## Problema que resolve
+
 - Analistas perdem tempo consolidando manualmente dados de múltiplas fontes
 - Indicadores financeiros (Sharpe, drawdown, volatilidade) são calculados de forma descentralizada e sem histórico
 - Não há uma visão unificada e automatizada da performance de uma carteira
 
 ## Proposta de valor
-- Pipeline automatizado de coleta -> armazenanto -> cálculo -> visualização
+
+- Pipeline automatizado de coleta → armazenamento → cálculo → visualização
 - Indicadores financeiros calculados com SQL + Python sobre dados históricos reais
 - Dashboard web acessível, sem necessidade de ferramentas pagas ou complexas
+
+---
+
+## Funcionalidades
+
+- **Dashboard de indicadores** — Retorno acumulado, Volatilidade, Drawdown máximo, Sharpe Ratio e Variação diária
+- **Alertas visuais** — Cards destacados quando a variação diária ultrapassa ±3%
+- **Gráfico de preços** — Histórico interativo com períodos de 3M, 6M e 1A
+- **Comparação de ativos** — Até 5 ativos no mesmo gráfico com retorno normalizado
+- **Busca com autocomplete** — Busca por nome ou ticker com navegação por teclado
+- **Matriz de correlação** — Visualização colorida de como os ativos se movem juntos
+- **Simulador de carteira** — Define pesos por ativo e vê retorno consolidado vs Ibovespa
+- **Tema claro/escuro** — Toggle com preferência salva no navegador
+- **Coleta automática** — APScheduler coleta dados todo dia às 18h
+- **Cache de respostas** — Reduz consultas repetidas ao banco de dados
+- **20+ ativos** — Ações, FIIs e índices da B3 e S&P 500
+- **86% de cobertura de testes** — Testes automatizados com pytest
+
+---
+
 
 ## Como funciona
 
@@ -42,23 +70,22 @@ flowchart TD
 
 > **Coleta automática:** o APScheduler dispara a coleta todos os dias às 18h, após o fechamento do mercado brasileiro, mantendo os dados sempre atualizados sem intervenção manual.
 
-## Preview
-![FinSight Demo](docs/demo.gif)
+
 ---
 
-## STACK 
+## Stack
 
-
-| Camada          | Tecnologia        | Justificativa                                                                               |
-| --------------- | ----------------- | ------------------------------------------------------------------------------------------- |
+| Camada | Tecnologia | Justificativa |
+|---|---|---|
 | Coleta de Dados | Python + yfinance | Acesso gratuito a dados reais de ativos brasileiros (B3) e internacionais via Yahoo Finance |
-| Manipulação     | pandas + NumPy    | Padrão da indústria financeira para transformação e análise de séries temporais             |
-| Banco de Dados  | PostgreSQL        | Banco relacional robusto, mais usado em ambientes corporativos financeiros que MySQL        |
-| Backend / API   | Python + FastAPI  | Framework moderno, leve e com documentação automática via Swagger. Ideal para APIs de dados |
-| Frontend        | HTML + CSS + JS   | Sem frameworks, para evitar complexidade desnecessária                                      |
-| Gráficos        | Chart.js          | Biblioteca JS leve e popular para dashboards financeiros interativos                        |
-| Versionamento   | Git + GitHub      | Controle de versão com histórico claro de commits para demonstrar evolução do projeto       |
-
+| Manipulação | pandas + NumPy | Padrão da indústria financeira para transformação e análise de séries temporais |
+| Banco de Dados | PostgreSQL | Banco relacional robusto, mais usado em ambientes corporativos financeiros |
+| Backend / API | Python + FastAPI | Framework moderno, leve e com documentação automática via Swagger |
+| Frontend | HTML + CSS + JS | Vanilla JS modular, sem frameworks desnecessários |
+| Gráficos | Chart.js | Biblioteca JS leve e popular para dashboards financeiros interativos |
+| Testes | pytest | 86% de cobertura com testes unitários e de integração |
+| Agendamento | APScheduler | Coleta automática diária sem intervenção manual |
+| Versionamento | Git + GitHub | Controle de versão com histórico claro de commits |
 
 ---
 
@@ -73,6 +100,7 @@ flowchart TD
 git clone https://github.com/PedroKeita/Finsight.git
 cd finsight
 ```
+
 ### 2. Crie e ative o ambiente virtual
 ```bash
 python -m venv venv
@@ -87,6 +115,7 @@ python -m pip install -r requirements.txt
 
 ### 4. Configure o banco de dados
 ```bash
+psql -U postgres -c "CREATE DATABASE finsight;"
 psql -U postgres -d finsight -f schema.sql
 ```
 
@@ -104,6 +133,7 @@ cp .env.example .env
 | SCHEDULER_MINUTE | Minuto da coleta automática diária | 0 |
 | FRONTEND_URL | URL do frontend para configuração do CORS | http://127.0.0.1:5500 |
 | API_PORT | Porta da API | 8000 |
+| DEBUG | Ativa reload automático em desenvolvimento | false |
 
 ### 6. Popule os ativos iniciais
 ```bash
@@ -121,56 +151,37 @@ python collector.py
 python run.py
 ```
 
-Acesse a documentação em: **http://127.0.0.1:8000/docs**
+Acesse a documentação interativa em: **http://127.0.0.1:8000/docs**
 
 ---
 
 ## Endpoints
 
 ### GET /assets
-Lista todos os ativos cadastrados no sistema.
+Lista todos os ativos cadastrados.
 
 **Resposta:**
 ```json
 [
-  {"id": 1, "ticker": "PETR4.SA", "name": "Petrobras", "category": "ação"},
-  {"id": 2, "ticker": "VALE3.SA", "name": "Vale", "category": "ação"}
+  {"id": 1, "ticker": "PETR4.SA", "name": "Petrobras", "category": "ação", "logo_url": "..."}
 ]
 ```
-
----
 
 ### GET /prices/{ticker}
 Retorna o histórico de preços de um ativo.
 
-**Parâmetros:**
 | Parâmetro | Tipo | Padrão | Descrição |
 |---|---|---|---|
 | ticker | path | — | Código do ativo (ex: PETR4.SA) |
 | period | query | 1y | Período: `1y`, `6m`, `3m` |
-
-**Exemplo:** `GET /prices/PETR4.SA?period=6m`
-
-**Resposta:**
-```json
-[
-  {"date": "2025-03-13", "close_price": 36.50},
-  {"date": "2025-03-14", "close_price": 37.20}
-]
-```
-
----
 
 ### GET /indicators/{ticker}
-Retorna os 4 indicadores financeiros de um ativo calculados sobre os dados históricos.
+Retorna os indicadores financeiros de um ativo.
 
-**Parâmetros:**
 | Parâmetro | Tipo | Padrão | Descrição |
 |---|---|---|---|
 | ticker | path | — | Código do ativo (ex: PETR4.SA) |
 | period | query | 1y | Período: `1y`, `6m`, `3m` |
-
-**Exemplo:** `GET /indicators/PETR4.SA?period=1y`
 
 **Resposta:**
 ```json
@@ -178,33 +189,49 @@ Retorna os 4 indicadores financeiros de um ativo calculados sobre os dados hist�
   "return": 37.57,
   "volatility": 24.46,
   "drawdown": -19.32,
-  "sharpe": 0.99
+  "sharpe": 0.99,
+  "daily_variation": -0.73
 }
 ```
 
-**Indicadores:**
-- **return** — retorno acumulado do período em %
-- **volatility** — volatilidade anualizada em % (desvio padrão × √252)
-- **drawdown** — maior queda do pico ao vale em %
-- **sharpe** — retorno ajustado ao risco (retorno excessivo / volatilidade)
+### GET /correlation/
+Retorna a matriz de correlação entre todos os ativos.
 
----
-
-### POST /collect/{ticker}
-Dispara a coleta de dados históricos de um ativo no Yahoo Finance e salva no banco.
-
-**Parâmetros:**
 | Parâmetro | Tipo | Padrão | Descrição |
 |---|---|---|---|
-| ticker | path | — | Código do ativo (ex: PETR4.SA) |
 | period | query | 1y | Período: `1y`, `6m`, `3m` |
 
-**Exemplo:** `POST /collect/PETR4.SA`
+### POST /portfolio/
+Simula o retorno de uma carteira com pesos definidos.
+
+**Body:**
+```json
+{
+  "allocations": [
+    {"ticker": "PETR4.SA", "weight": 0.40},
+    {"ticker": "VALE3.SA", "weight": 0.30},
+    {"ticker": "ITUB4.SA", "weight": 0.30}
+  ],
+  "period": "1y"
+}
+```
 
 **Resposta:**
 ```json
-{"status": "ok", "message": "Dados de PETR4.SA coletados com sucesso"}
+{
+  "return": 49.03,
+  "volatility": 16.58,
+  "sharpe": 1.74,
+  "history": [...],
+  "benchmark_history": [...]
+}
 ```
+
+### POST /collect/{ticker}
+Dispara coleta de dados de um ativo específico.
+
+### POST /collect/all
+Atualiza dados de todos os ativos cadastrados.
 
 ---
 
@@ -213,9 +240,22 @@ Dispara a coleta de dados históricos de um ativo no Yahoo Finance e salva no ba
 | Indicador | Fórmula | O que mede |
 |---|---|---|
 | Retorno Acumulado | (Preço final / Preço inicial) - 1 | Quanto o ativo valorizou no período |
-| Volatilidade | Desvio padrão dos retornos diários × √252 | Risco do ativo, indica quanto o preço oscila |
+| Volatilidade | Desvio padrão dos retornos diários × √252 | Risco do ativo — quanto o preço oscila |
 | Drawdown Máximo | Maior queda do pico ao vale | Pior momento do ativo no período |
 | Sharpe Ratio | (Retorno - CDI) / Volatilidade | Qualidade do retorno ajustado ao risco |
+| Variação Diária | (Preço hoje - Preço ontem) / Preço ontem | Movimento do dia — alerta acima de ±3% |
+
+---
+
+## Testes
+```bash
+cd backend
+pytest tests/ -v --cov=. --cov-report=term-missing
+```
+
+Cobertura atual: **86%**
+
+---
 
 ## Planejamento do Projeto
 
@@ -235,6 +275,7 @@ O FinSight foi planejado seguindo metodologia ágil, com épicas, histórias de 
 | EP-10 — Qualidade Técnica | Testes, cache, agendamento e configuração | ✅ Concluída |
 | EP-11 — Documentação | Badges, diagrama e GIF animado | ✅ Concluída |
 | EP-12 — Funcionalidades Financeiras | Correlação, simulador e alertas | ✅ Concluída |
+| EP-13 — Visual e UX | Tema claro/escuro | ✅ Concluída |
 
-> O planejamento completo com histórias de usuário e critérios de aceitação está disponível em [`Documentação Épicas e User Stories`](docs/Epics_UserStories.md) 
+> O planejamento completo com histórias de usuário e critérios de aceitação está disponível em [`Documentação Épicas e User Stories`](docs/Epics_UserStories.md)
 
