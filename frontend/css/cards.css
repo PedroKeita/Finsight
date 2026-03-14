@@ -5,14 +5,14 @@
   margin-bottom: 24px;
   font-size: 20px;
   font-weight: bold;
-  color: #e0e0e0;
+  color: var(--text-primary);
 }
 
 .asset-logo {
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background: #1e2130;
+  background: var(--bg-secondary);
   object-fit: contain;
 }
 
@@ -24,8 +24,8 @@
 }
 
 .card {
-  background: #1e2130;
-  border: 1px solid #2e3250;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
   border-radius: 12px;
   padding: 24px;
   display: flex;
@@ -34,13 +34,11 @@
   transition: border-color 0.2s;
 }
 
-.card:hover {
-  border-color: #4fc3f7;
-}
+.card:hover { border-color: var(--accent); }
 
 .card-label {
   font-size: 13px;
-  color: #888;
+  color: var(--text-secondary);
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
@@ -48,11 +46,11 @@
 .card-value {
   font-size: 28px;
   font-weight: bold;
-  color: #e0e0e0;
+  color: var(--text-primary);
 }
 
-.card-value.positive { color: #4caf50; }
-.card-value.negative { color: #ef5350; }
+.card-value.positive { color: var(--positive); }
+.card-value.negative { color: var(--negative); }
 
 .card.alert-up {
   border-color: #ffd54f;
@@ -60,6 +58,6 @@
 }
 
 .card.alert-down {
-  border-color: #ef5350;
+  border-color: var(--negative);
   background: rgba(239, 83, 80, 0.08);
 }

@@ -1,6 +1,6 @@
 .chart-container {
-  background: #1e2130;
-  border: 1px solid #2e3250;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
   border-radius: 12px;
   padding: 24px;
 }

@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setupPeriodButtons();
     setupRefreshButton();
     setupComparisonControls();
+    setupThemeToggle();
 });
 
 async function loadAssets() {
@@ -140,5 +141,22 @@ function updateComparisonBar() {
             updateComparisonBar();
             loadData();
         });
+    });
+}
+
+function setupThemeToggle() {
+    const btn = document.getElementById("theme-toggle");
+    const saved = localStorage.getItem("theme");
+
+    if (saved === "light") {
+        document.body.classList.add("light-theme");
+        btn.textContent = "☀️";
+    }
+
+    btn.addEventListener("click", () => {
+        document.body.classList.toggle("light-theme");
+        const isLight = document.body.classList.contains("light-theme");
+        btn.textContent = isLight ? "☀️" : "🌙";
+        localStorage.setItem("theme", isLight ? "light" : "dark");
     });
 }

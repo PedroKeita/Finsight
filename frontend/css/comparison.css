@@ -6,56 +6,46 @@
   flex-wrap: wrap;
 }
 
-.comparison-bar.hidden {
-  display: none;
-}
+.comparison-bar.hidden { display: none; }
 
 .comparison-label {
   font-size: 13px;
-  color: #888;
+  color: var(--text-secondary);
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
-#comparison-chips {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-}
+#comparison-chips { display: flex; gap: 8px; flex-wrap: wrap; }
 
 .chip {
   display: flex;
   align-items: center;
   gap: 6px;
-  background: #2e3250;
+  background: var(--bg-tertiary);
   border-radius: 20px;
   padding: 6px 12px;
   font-size: 13px;
-  color: #e0e0e0;
+  color: var(--text-primary);
 }
 
-.chip img {
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-}
+.chip img { width: 16px; height: 16px; border-radius: 50%; }
 
 .chip-remove {
   background: none;
   border: none;
-  color: #888;
+  color: var(--text-secondary);
   cursor: pointer;
   font-size: 14px;
   padding: 0;
   line-height: 1;
 }
 
-.chip-remove:hover { color: #ef5350; }
+.chip-remove:hover { color: var(--negative); }
 
 #clear-comparison {
   background: transparent;
-  color: #ef5350;
-  border: 1px solid #ef5350;
+  color: var(--negative);
+  border: 1px solid var(--negative);
   border-radius: 8px;
   padding: 6px 14px;
   font-size: 13px;
@@ -64,6 +54,6 @@
 }
 
 #clear-comparison:hover {
-  background: #ef5350;
-  color: #0f1117;
+  background: var(--negative);
+  color: var(--bg-primary);
 }
