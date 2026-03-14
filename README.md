@@ -60,10 +60,19 @@ psql -U postgres -d finsight -f schema.sql
 ```
 
 ### 5. Configure o arquivo .env
+Copie o `.env.example` e preencha com seus valores:
+```bash
+cp .env.example .env
 ```
-DATABASE_URL=postgresql://finsight_user:suasenha@localhost:5432/finsight
-RISK_FREE_RATE=0.13
-```
+
+| Variável | Descrição | Padrão |
+|---|---|---|
+| DATABASE_URL | URL de conexão com o PostgreSQL | — |
+| RISK_FREE_RATE | Taxa livre de risco (CDI) para o Sharpe | 0.13 |
+| SCHEDULER_HOUR | Hora da coleta automática diária | 18 |
+| SCHEDULER_MINUTE | Minuto da coleta automática diária | 0 |
+| FRONTEND_URL | URL do frontend para configuração do CORS | http://127.0.0.1:5500 |
+| API_PORT | Porta da API | 8000 |
 
 ### 6. Popule os ativos iniciais
 ```bash
@@ -78,7 +87,7 @@ python collector.py
 
 ### 8. Suba a API
 ```bash
-uvicorn main:app --reload
+python run.py
 ```
 
 Acesse a documentação em: **http://127.0.0.1:8000/docs**

@@ -388,11 +388,11 @@ Garantir confiabilidade, performance e boas práticas de engenharia no projeto.
 - Sistema continua funcionando normalmente durante a coleta
 
 #### Task
-- [ ] Instalar APScheduler
-- [ ] Criar scheduler.py com job de coleta diária
-- [ ] Configurar horário via variável de ambiente
-- [ ] Integrar scheduler com o startup do FastAPI
-- [ ] Testar agendamento com intervalo curto
+- [X] Instalar APScheduler
+- [X] Criar scheduler.py com job de coleta diária
+- [X] Configurar horário via variável de ambiente
+- [X] Integrar scheduler com o startup do FastAPI
+- [X] Testar agendamento com intervalo curto
 
 ### US-21
 "Como desenvolvedor, quero que URLs e configurações sensíveis estejam em variáveis de ambiente para facilitar o deploy."
@@ -405,8 +405,8 @@ Garantir confiabilidade, performance e boas práticas de engenharia no projeto.
 
 #### Task
 - [ ] Adicionar FRONTEND_URL e API_PORT no .env
-- [ ] Atualizar CORS para usar FRONTEND_URL do .env
-- [ ] Criar .env.example com valores de exemplo
+- [X] Atualizar CORS para usar FRONTEND_URL do .env
+- [X] Criar .env.example com valores de exemplo
 - [ ] Atualizar README com as novas variáveis
 
 ---
