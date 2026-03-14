@@ -1,7 +1,10 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from routers import assets, prices, indicators, collect
-from datetime import datetime, timedelta
+from scheduler import start_scheduler
+import logging
+
+logger = logging.getLogger(__name__)
 
 app = FastAPI(
     title="FinSight API",
@@ -20,3 +23,8 @@ app.include_router(assets.router)
 app.include_router(prices.router)
 app.include_router(indicators.router)
 app.include_router(collect.router)
+
+@app.on_event("startup")
+async def startup_event():
+    start_scheduler()
+    logger.info("FinSight API iniciada")
