@@ -156,7 +156,7 @@ Expor os dados e indicadores via endpoints HTTP para que o frontend e qualquer c
 - [X] Criar endpoint POST /collect/{ticker}
 - [X] Adicionar CORS para permitir chamadas no frontend
 - [X] Testar todos os endpoints via Swagger
-- [ ] Documentar endpoints no README
+- [X] Documentar endpoints no README
 # EP-05 - Dashboard Web
 ## Objetivo
 Interface limpa e funcional que transforma os dados da API em informação visual de fácil leitura
@@ -174,12 +174,12 @@ Interface limpa e funcional que transforma os dados da API em informação visua
 - Loading indicator aparece durante chamada da API
 
 #### Task
-- [ ] Criar index.html com estrutura base
-- [ ] Criar style.css com layout de cards em grid
-- [ ] Criar app.js com fetch() para GET /assets
-- [ ] Popular dropdown dinamicamente
-- [ ] Implementar fetch para GET /indicators/{ticker}
-- [ ] Renderizar os 4 cards com formatação condicional de cores
+- [X] Criar index.html com estrutura base
+- [X] Criar style.css com layout de cards em grid
+- [X] Criar app.js com fetch() para GET /assets
+- [X] Popular dropdown dinamicamente
+- [X] Implementar fetch para GET /indicators/{ticker}
+- [X] Renderizar os 4 cards com formatação condicional de cores
 
 ### US-10
 "Como usuário, quero ver um gráfico de linha com o histórico de preços do ativo selecionado no período escolhido."
@@ -193,10 +193,10 @@ Interface limpa e funcional que transforma os dados da API em informação visua
 - Página responsiva em telas menores
 
 #### Task
-- [ ] Incluir Chart.js via CDN
-- [ ] Criar canvas para o gráfico
-- [ ] Implementar fetch para GET /prices/{ticker}?period=X
-- [ ] Renderizar LineChart com dados da API
-- [ ] Criar botões de período e lógica de troca
-- [ ] Ajustar CSS para responsividade básica
-- [ ] Testar no browser com dados reais
+- [X] Incluir Chart.js via CDN
+- [X] Criar canvas para o gráfico
+- [X] Implementar fetch para GET /prices/{ticker}?period=X
+- [X] Renderizar LineChart com dados da API
+- [X] Criar botões de período e lógica de troca
+- [X] Ajustar CSS para responsividade básica
+- [X] Testar no browser com dados reais

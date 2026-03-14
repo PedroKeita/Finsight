@@ -11,7 +11,8 @@ O FinSight é um sistema end-to-end de análise de carteiras de investimentos. E
 - Indicadores financeiros calculados com SQL + Python sobre dados históricos reais
 - Dashboard web acessível, sem necessidade de ferramentas pagas ou complexas
 
-
+## Preview
+![FinSight Dashboard](docs/finsight_screenshot.png)
 ---
 
 ## STACK 
@@ -186,7 +187,7 @@ O FinSight foi planejado seguindo metodologia ágil, com épicas, histórias de 
 | EP-02 — Coleta de Dados | Pipeline yfinance → PostgreSQL | ✅ Concluída |
 | EP-03 — Indicadores | Retorno, Volatilidade, Drawdown, Sharpe | ✅ Concluída |
 | EP-04 — API REST | Endpoints FastAPI com documentação Swagger | ✅ Concluída |
-| EP-05 — Dashboard | Interface web com gráficos interativos | 🚧 Em desenvolvimento |
+| EP-05 — Dashboard | Interface web com gráficos interativos | ✅ Concluída |
 
 
 > O planejamento completo com histórias de usuário e critérios de aceitação está disponível em [`Documentação Épicas e User Stories`](docs/Epics_UserStories.md) 
