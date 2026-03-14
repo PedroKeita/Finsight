@@ -10,6 +10,7 @@ class Asset(Base):
     ticker = Column(String(20), nullable=False, unique=True)
     name = Column(String(100), nullable=False)
     category = Column(String(50), nullable=False)
+    logo_url = Column(String(255), nullable=True)
     prices = relationship("Price", back_populates="asset")
 
     def __repr__(self):

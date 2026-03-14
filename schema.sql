@@ -3,6 +3,7 @@ CREATE TABLE IF NOT EXISTS assets (
     ticker VARCHAR(20) NOT NULL UNIQUE,
     name VARCHAR(100) NOT NULL,
     category VARCHAR(50) NOT NULL
+    logo_url VARCHAR(255)
 );
 
 CREATE TABLE IF NOT EXISTS prices (
